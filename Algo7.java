@@ -28,9 +28,9 @@ void main() {
 void printLongestStraightLine(int[]... coordinatePairs) {
     int[][] longestLinePairs = new int[coordinatePairs.length][2];
     int[] firstPair = new int[2];
-    double maxLength = 0;
+    int maxLength = 0;
     double gradient = 0;
-    double currentLength;
+    int currentLength;
     int printedPointCount = 0;
 
     for (int i = 0; i < coordinatePairs.length; i++) {
@@ -64,10 +64,11 @@ void printLongestStraightLine(int[]... coordinatePairs) {
 
 }
 
-double getLengthBetween2Coordinates(int[] pair1, int[] pair2) {
+int getLengthBetween2Coordinates(int[] pair1, int[] pair2) {
     int x = pair1[0] - pair2[0];
     int y = pair1[1] - pair2[1];
-    return Math.pow((Math.pow(x, 2) + Math.pow(y, 2)), 0.5);
+    //return Math.pow((Math.pow(x, 2) + Math.pow(y, 2)), 0.5);
+    return x * x + y * y;
 }
 
 double getGradientBetween2Coordinates(int[] pair1, int[] pair2) {
@@ -77,7 +78,5 @@ double getGradientBetween2Coordinates(int[] pair1, int[] pair2) {
 }
 
 boolean checkWhetherPointInLongestLine(double gradient, int[] startingPoint, int[] checkingPoint) {
-    if (getGradientBetween2Coordinates(startingPoint, checkingPoint) == gradient && getLengthBetween2Coordinates(startingPoint, checkingPoint) > 0)
-        return true;
-    return false;
+    return getGradientBetween2Coordinates(startingPoint, checkingPoint) == gradient && getLengthBetween2Coordinates(startingPoint, checkingPoint) > 0;
 }
