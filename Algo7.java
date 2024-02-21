@@ -78,5 +78,5 @@ double getGradientBetween2Coordinates(int[] pair1, int[] pair2) {
 }
 
 boolean checkWhetherPointInLongestLine(double gradient, int[] startingPoint, int[] checkingPoint) {
-    return getGradientBetween2Coordinates(startingPoint, checkingPoint) == gradient && getLengthBetween2Coordinates(startingPoint, checkingPoint) > 0;
+    return getLengthBetween2Coordinates(startingPoint, checkingPoint) > 0 && getGradientBetween2Coordinates(startingPoint, checkingPoint) == gradient;
 }
