@@ -60,7 +60,7 @@ void printLongestStraightLine(int[]... coordinatePairs) {
     }
     System.out.println("\b\n");
 
-    System.out.println("----------------------------");
+    System.out.println("--------------------------");
 
 }
 
