@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 void main() {
     printLongestStraightLine(new int[]{2, 2},
@@ -23,13 +24,22 @@ void main() {
             new int[]{2, -2},
             new int[]{3, -3},
             new int[]{4, -4});
+
+    printLongestStraightLine(new int[]{2, 0},
+            new int[]{1, 3},
+            new int[]{-1, 1},
+            new int[]{-2, 2},
+            new int[]{2, -2},
+            new int[]{2, -3},
+            new int[]{2, 10});
 }
+
 
 void printLongestStraightLine(int[]... coordinatePairs) {
     int[][] longestLinePairs = new int[coordinatePairs.length][2];
     int[] firstPair = new int[2];
     int maxLength = 0;
-    double gradient = 0;
+    Double gradient = null;
     int currentLength;
     int printedPointCount = 0;
 
@@ -60,7 +70,7 @@ void printLongestStraightLine(int[]... coordinatePairs) {
     }
     System.out.println("\b\n");
 
-    System.out.println("--------------------------");
+    System.out.println("----------------------------");
 
 }
 
@@ -71,12 +81,13 @@ int getLengthBetween2Coordinates(int[] pair1, int[] pair2) {
     return x * x + y * y;
 }
 
-double getGradientBetween2Coordinates(int[] pair1, int[] pair2) {
+Double getGradientBetween2Coordinates(int[] pair1, int[] pair2) {
     int x = pair1[0] - pair2[0];
     int y = pair1[1] - pair2[1];
-    return (double) y / x;
+    if (x != 0) return (double) y / x;
+    return null;
 }
 
-boolean checkWhetherPointInLongestLine(double gradient, int[] startingPoint, int[] checkingPoint) {
-    return getLengthBetween2Coordinates(startingPoint, checkingPoint) > 0 && getGradientBetween2Coordinates(startingPoint, checkingPoint) == gradient;
+boolean checkWhetherPointInLongestLine(Double gradient, int[] startingPoint, int[] checkingPoint) {
+    return Objects.equals(getGradientBetween2Coordinates(startingPoint, checkingPoint), gradient);
 }
